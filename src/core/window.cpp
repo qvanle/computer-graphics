@@ -4,14 +4,24 @@
 #include <GL/glut.h>    // Linux and Windows use this
 #endif
 
-
 #include <cstdlib>
+#include <memory>
+#include <iostream>
 
 #include "window.hpp"
 
 // Static function for display callback
 void Window::displayCallback() {
     glClear(GL_COLOR_BUFFER_BIT);
+    MANI::menu->display();
+    // draw a triangle with color red 
+    glColor3f(1.0f, 0.0f, 0.0f);
+    glBegin(GL_TRIANGLES);
+    glVertex2f(0.0f, 0.0f);
+    glVertex2f(0.5f, 0.0f);
+    glVertex2f(0.25f, 0.5f);
+    glEnd();
+
     glFlush();
 }
 
@@ -19,6 +29,15 @@ void Window::displayCallback() {
 void Window::keyCallback(unsigned char key, int x, int y) {
     if (key == 27) { // Escape key
         exit(0);
+    }
+}
+
+// Static function for mouse input
+void Window::mouseCallback(int button, int state, int x, int y) {
+    if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
+//        MANI::menu->swi();
+//        MANI::menu->move(x, y);
+//        glutPostRedisplay();
     }
 }
 
@@ -46,18 +65,32 @@ void Window::initialize() {
     if (fullscreen) {
         glutGameModeString("1920x1080:32@60"); // Example fullscreen mode
         glutEnterGameMode();
+        glViewport(0, 0, glutGet(GLUT_SCREEN_WIDTH), glutGet(GLUT_SCREEN_HEIGHT));
+        width = glutGet(GLUT_SCREEN_WIDTH);
+        height = glutGet(GLUT_SCREEN_HEIGHT);
     } else {
         glutInitWindowSize(width, height);
         glutCreateWindow(title.c_str());
     }
 
-    glClearColor(0.96f, 0.96f, 0.86f, 1.0f); // Beige background color
+    // 🔴 Set 2D Projection
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluOrtho2D(0, width, height, 0);  // Flip Y-axis so (0,0) is top-left
+    glMatrixMode(GL_MODELVIEW);
+
+    glClearColor(0.99f, 0.99f, 0.93f, 1.0f); // Beige background color
+    // set drawing color to black
+    glColor3f(0.0f, 0.0f, 0.0f);
 
     // Register the display callback
     glutDisplayFunc(Window::displayCallback);
 
     // Register the key callback
     glutKeyboardFunc(Window::keyCallback);
+    
+    // Register the mouse callback 
+    glutMouseFunc(Window::mouseCallback);
 }
 
 void Window::run() {

@@ -1,0 +1,6 @@
+Line
+Triangle
+Quadrilateral
+Polygon
+Operations
+Other
