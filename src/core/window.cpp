@@ -13,15 +13,6 @@
 // Static function for display callback
 void Window::displayCallback() {
     glClear(GL_COLOR_BUFFER_BIT);
-    MANI::menu->display();
-    // draw a triangle with color red 
-    glColor3f(1.0f, 0.0f, 0.0f);
-    glBegin(GL_TRIANGLES);
-    glVertex2f(0.0f, 0.0f);
-    glVertex2f(0.5f, 0.0f);
-    glVertex2f(0.25f, 0.5f);
-    glEnd();
-
     glFlush();
 }
 
