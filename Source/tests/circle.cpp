@@ -1,3 +1,4 @@
+// this file is use to test feature draw circle
 #ifdef __APPLE__
 #include <GLUT/glut.h>  // macOS uses this path
 #else
@@ -5,11 +6,10 @@
 #endif
 
 #include "window.hpp"
-#include "hexagon.hpp"
+#include "circle.hpp"
 
-Hexagon x = Hexagon({325, 220}, 100, {255, 10, 10}, true);
-Hexagon y = Hexagon({326, 223}, 95, {255, 10, 10}, true);
-
+Circle x = Circle({325, 220}, 100, {255, 10, 10}, true, 100);
+Circle y = Circle({325, 221}, 98, {255, 10, 10}, false, 100);
 
 class NewWindow : public Window {
 private: 
@@ -31,7 +31,7 @@ public:
 
 int main() {
     // Create a fullscreen window with a title
-    NewWindow window("Hexagon Test", 800, 600);
+    NewWindow window("Circle Test", 800, 600);
     
     // Run the window loop
     window.run();

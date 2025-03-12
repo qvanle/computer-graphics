@@ -1,3 +1,4 @@
+// this file is use to test the feature draw rectangle
 #ifdef __APPLE__
 #include <GLUT/glut.h>  // macOS uses this path
 #else

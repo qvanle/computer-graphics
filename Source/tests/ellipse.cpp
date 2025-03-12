@@ -1,3 +1,4 @@
+// this file is use to test the feature draw ellipse
 #ifdef __APPLE__
 #include <GLUT/glut.h>  // macOS uses this path
 #else
@@ -5,10 +6,10 @@
 #endif
 
 #include "window.hpp"
-#include "circle.hpp"
+#include "ellipse.hpp"
 
-Circle x = Circle({325, 220}, 100, {255, 10, 10}, true, 100);
-Circle y = Circle({325, 221}, 98, {255, 10, 10}, false, 100);
+Ellipse x = Ellipse({325, 220}, 100, 50, {255, 10, 10}, true, 100);
+Ellipse y = Ellipse({325, 221}, 98, 48, {255, 10, 10}, false, 100);
 
 class NewWindow : public Window {
 private: 
@@ -30,7 +31,7 @@ public:
 
 int main() {
     // Create a fullscreen window with a title
-    NewWindow window("Circle Test", 800, 600);
+    NewWindow window("Ellipse Test", 800, 600);
     
     // Run the window loop
     window.run();

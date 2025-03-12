@@ -1,3 +1,4 @@
+// this file is use to test the glut library and create a hello world window
 #ifdef __APPLE__
 #include <GLUT/glut.h>  // macOS uses this path
 #else
