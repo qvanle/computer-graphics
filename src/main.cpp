@@ -1,24 +1,12 @@
-#ifdef __APPLE__
-#include <GLUT/glut.h>  // macOS uses this path
-#else
-#include <GL/glut.h>    // Linux and Windows use this
-#endif
+#include "window.hpp"
 
-
-void display() {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glFlush();
-}
-
-int main(int argc, char** argv) {
-    glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize(500, 500);
-    glutCreateWindow("Lab02 Window");
+int main() {
+    // Create a fullscreen window with a title
+    Window window("Lab02", 800, 600);
     
-    glClearColor(0.96f, 0.96f, 0.86f, 1.0f); // Beige color
-    glutDisplayFunc(display);
-    
-    glutMainLoop();
+    // Run the window loop
+    window.run();
+
     return 0;
 }
+

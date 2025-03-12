@@ -15,7 +15,7 @@ echo -e "${YELLOW}🔨 Building project...${NC}"
 cmake --build build || { echo -e "${RED}❌ Build failed! Exiting.${NC}"; exit 1; }
 
 # Step 3: Run the specified executable
-EXECUTABLE="window"
+EXECUTABLE="Lab02"
 if [[ -z "$EXECUTABLE" ]]; then
     echo -e "${RED}⚠️  No executable specified! Use ./build.sh <executable_name>${NC}"
     exit 1
