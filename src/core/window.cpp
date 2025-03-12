@@ -8,11 +8,15 @@
 #include <memory>
 #include <iostream>
 
+#include "action.hpp"
 #include "window.hpp"
+
+std::shared_ptr<Action> Window::action = nullptr;
 
 // Static function for display callback
 void Window::displayCallback() {
     glClear(GL_COLOR_BUFFER_BIT);
+    action->fill();
     glFlush();
 }
 
@@ -26,9 +30,8 @@ void Window::keyCallback(unsigned char key, int x, int y) {
 // Static function for mouse input
 void Window::mouseCallback(int button, int state, int x, int y) {
     if (button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN) {
-//        MANI::menu->swi();
-//        MANI::menu->move(x, y);
-//        glutPostRedisplay();
+        action->orderfill(x, y, {0, 0, 0});
+        glutPostRedisplay();
     }
 }
 
@@ -82,6 +85,8 @@ void Window::initialize() {
     
     // Register the mouse callback 
     glutMouseFunc(Window::mouseCallback);
+    
+    action = std::make_shared<Action>(std::make_shared<Window>(*this));
 }
 
 void Window::run() {

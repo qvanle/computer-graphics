@@ -8,7 +8,7 @@ NC='\033[0m' # No Color
 
 
 
-EXECUTABLE="ellipse"
+EXECUTABLE="window"
 
 
 # Step 1: Run CMake

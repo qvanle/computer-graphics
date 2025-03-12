@@ -6,13 +6,16 @@
 
 #include "manipulate.hpp"
 
+class Action;
+
 class Window {
 private:
+    friend class Action;
     std::string title;
     int width;
     int height;
     bool fullscreen;
-
+    static std::shared_ptr<Action> action;
     void initialize();
     
     static void displayCallback();
